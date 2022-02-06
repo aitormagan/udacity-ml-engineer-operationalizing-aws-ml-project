@@ -18,7 +18,7 @@ Here is an image with the endpoints deployed. One is for the training job I perf
 
 In this case, I have chosen a `m5.xlarge` instance, because the model will be trained on the instance itself and we need enough computational resources for the model to be trained on an acceptable time. `m5.xlarge` instances have a cost of 0.192 USD and provide us with 4 vCPU and 16 GB of RAM which are adequate for the type of training we are performing here.
 
-![image](images/ec2-model.png)
+![image](images/ec2-console.png)
 
 Regarding the code, it can be seen that the one used on the notebook instance is pretty similar to the one prepared for the EC2. The main differences are:
 
