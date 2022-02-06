@@ -20,11 +20,11 @@ In this case, I have chosen a `m5.xlarge` instance, because the model will be tr
 
 ![image](images/ec2-console.png)
 
-Regarding the code, it can be seen that the one used on the notebook instance is pretty similar to the one prepared for the EC2. The main differences are:
+Regarding the code, the one used on the notebook instance is pretty like the one prepared for the EC2. The main differences are:
 
 * The number of epochs: `50` on the notebook and `5` on the EC2.
 * Batch size: the notebook is prepared to receive this as an input while on the EC2 code is set to `2`
-* Learning rate: the notebook is prepared to recieve this as an input while on the EC2 code is set to `1e-4`
+* Learning rate: the notebook is prepared to receive this as an input while on the EC2 code is set to `1e-4`
 
 Here is the output of the training process:
 
@@ -32,11 +32,11 @@ Here is the output of the training process:
 
 ## Lambda function
 
-The code of the lambda is very simple. It receieves the input (`event`) and call the sagemaker endpoint with the input given provided by the user. Then the lambda will return a dictionary which will contain the result of the endpoint invocation in the `body` field. 
+The code of the lambda is very simple. It receives the input (`event`) and call the sagemaker endpoint with the input given provided by the user. Then the lambda will return a dictionary which will contain the result of the endpoint invocation in the `body` field. 
 
 In order the lambda to work, we have attached to its role the `AmazonSageMakerFullAccess` policy.
 
-The lambda is invoked with the provided example and here is an screenshot:
+The lambda is invoked with the provided example and here is a screenshot:
 
 ![image](images/lambda-call.png)
 
@@ -59,7 +59,7 @@ Here is a screenshot of the policies attached to the lambda:
 
 ![image](images/lambda-role.png)
 
-As can be seen, the lambda has two policies attached. The first one allows the lambda to be executed properly. The second one allows the lambda to call the endpoint. However, the last policy is very permissive as it also allows the lambda to invoke many other actions in SageMaker such as creating notebook instances or generating new training jobs. The most appropriate thing here is to create a custom policy which will allow the lambda only to call the endpoint we have created. This would be a valid example for our case:
+As can be seen, the lambda has two policies attached. The first one allows the lambda to be executed properly. The second one allows the lambda to call the endpoint. However, the last policy is very permissive as it also allows the lambda to invoke many other actions in SageMaker, such as creating notebook instances or generating new training jobs. The most appropriate thing here is to create a custom policy which will allow the lambda only to call the endpoint we have created. This would be a valid example for our case:
 
 ```json
 {
@@ -75,7 +75,7 @@ As can be seen, the lambda has two policies attached. The first one allows the l
 }
 ```
 
-In the IAM console we can see other roles which should me monitorized and deleted in case of not being used by resources we have created. 
+In the IAM console we can see other roles which should be monitored and deleted in case of not being used by resources we have created. 
 
 ## Concurrency
 
